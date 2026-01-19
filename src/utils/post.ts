@@ -1,5 +1,5 @@
 import { getCollection } from 'astro:content'
-import { CATEGORIES } from '@/data/categories'
+import { CATEGORIES } from '../data/categories'
 
 export const getCategories = async () => {
 	const posts = await getCollection('blog')
