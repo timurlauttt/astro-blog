@@ -18,9 +18,16 @@
 	h4,
 	h5,
 	h6 {
-		@apply text-zinc-800 dark:text-zinc-100   !important;
+		@apply text-zinc-800 dark:text-zinc-100 text-xl md:text-3xl !important;
 	}
 
+	.prose h2 {
+		@apply text-lg md:text-2xl !important;
+	}
+
+	.prose h3 {
+		@apply text-base md:text-xl !important;
+	}
 	html.dark .shiki,
 	html.dark .shiki span {
 	  color: var(--shiki-dark) !important;

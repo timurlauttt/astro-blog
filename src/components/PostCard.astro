@@ -25,9 +25,9 @@ const {
 		<div class='z-30 absolute bottom-0 w-full h-20'>
 			<div class='-z-10 absolute bottom-0 glass w-full min-h-full'></div>
 			<div class='flex items-center justify-between gap-x-1 text-white px-6 py-4'>
-				<div class='flex flex-col gap-1 items-center justify-center'>
+				<div class='flex flex-col gap-1 text-start md:justify-center'>
 					<FormattedDate date={pubDate} />
-					<span class='text-sm'> {readTime}</span>
+					<span class='text-start text-sm'> {readTime}</span>
 				</div>
 
 				<span class='pb-4'>{category}</span>
@@ -38,7 +38,7 @@ const {
 	<div class='flex justify-between flex-col gap-4 md:gap-0 py-6 pl-1'>
 		<div class='flex flex-col gap-3'>
 			<div class='flex flex-col gap-2'>
-				<a class='text-2xl font-semibold -tracking-wider' href={`/post/${slug}/`}>
+				<a class='text-lg md:text-2xl font-semibold -tracking-wider' href={`/post/${slug}/`}>
 					{title}
 				</a>
 			</div>
