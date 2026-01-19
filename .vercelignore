@@ -1,0 +1,12 @@
+node_modules
+.husky
+.git
+.vscode
+*.log
+.DS_Store
+README.md
+LICENSE
+.eslintrc*
+.prettierrc*
+prettier.config.cjs
+tsconfig.json

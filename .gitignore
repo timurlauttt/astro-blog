@@ -1,3 +1,5 @@
+
+
 # build output
 dist/
 # generated types
@@ -23,4 +25,5 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-node_modules
+# Vercel
+.vercel
