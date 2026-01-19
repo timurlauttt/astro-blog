@@ -4,7 +4,9 @@ import { siteConfig } from '../data/site.config'
 const today = new Date()
 ---
 
-<footer class='flex justify-center items-center w-full px-16 h-28 border-t-2'>
-	&copy; {today.getFullYear()}
-	{siteConfig.author}. All rights reserved.
+<footer class='flex items-center justify-center w-full px-4 md:px-16 py-8 border-t-2 text-center'>
+	<p>
+		&copy; {today.getFullYear()}
+		{siteConfig.author}.<br /> All rights reserved.
+	</p>
 </footer>

@@ -3,6 +3,8 @@ import { CATEGORIES } from '../data/categories'
 
 export const getCategories = async () => {
 	const posts = await getCollection('blog')
+	if (!posts || posts.length === 0) return []
+	
 	const categories = new Set(
 		posts.filter((post) => !post.data.draft).map((post) => post.data.category)
 	)
@@ -12,7 +14,10 @@ export const getCategories = async () => {
 }
 
 export const getPosts = async (max?: number) => {
-	return (await getCollection('blog'))
+	const posts = await getCollection('blog')
+	if (!posts || posts.length === 0) return []
+	
+	return posts
 		.filter((post) => !post.data.draft)
 		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 		.slice(0, max)
@@ -20,6 +25,8 @@ export const getPosts = async (max?: number) => {
 
 export const getTags = async () => {
 	const posts = await getCollection('blog')
+	if (!posts || posts.length === 0) return []
+	
 	const tags = new Set()
 	posts
 		.filter((post) => !post.data.draft)
@@ -36,6 +43,8 @@ export const getTags = async () => {
 
 export const getPostByTag = async (tag: string) => {
 	const posts = await getPosts()
+	if (!posts || posts.length === 0) return []
+	
 	const lowercaseTag = tag.toLowerCase()
 	return posts
 		.filter((post) => !post.data.draft)
@@ -46,6 +55,8 @@ export const getPostByTag = async (tag: string) => {
 
 export const filterPostsByCategory = async (category: string) => {
 	const posts = await getPosts()
+	if (!posts || posts.length === 0) return []
+	
 	return posts
 		.filter((post) => !post.data.draft)
 		.filter((post) => post.data.category.toLowerCase() === category)

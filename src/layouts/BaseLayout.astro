@@ -26,10 +26,77 @@ const { title, description, image, articleDate } = Astro.props
 		</main>
 		<TwSizeIndicator />
 		<EditBlog />
+		
+		<!-- Scroll to Top Button -->
+		<button
+			id='scroll-to-top'
+			class='fixed bottom-8 right-8 bg-zinc-800 dark:bg-zinc-200 text-white dark:text-zinc-900 p-3 rounded-full shadow-lg hover:bg-zinc-700 dark:hover:bg-zinc-300 transition-all duration-300 opacity-0 pointer-events-none z-50'
+			aria-label='Scroll to top'
+		>
+			<svg
+				class='w-6 h-6'
+				fill='none'
+				stroke='currentColor'
+				stroke-linecap='round'
+				stroke-linejoin='round'
+				stroke-width='2.5'
+				viewBox='0 0 24 24'
+				xmlns='http://www.w3.org/2000/svg'
+			>
+				<line x1='12' x2='12' y1='19' y2='5'></line>
+				<polyline points='5 12 12 5 19 12'></polyline>
+			</svg>
+		</button>
+		
 		<style>
 			body {
 				margin-left: calc(100vw - 100%); /* prevent layout shift */
 			}
 		</style>
+		
+		<script is:inline>
+			function initScrollToTop() {
+				const scrollToTopBtn = document.getElementById('scroll-to-top')
+				if (!scrollToTopBtn) return
+
+				// Handle scroll visibility
+				function handleScroll() {
+					if (window.scrollY > 300) {
+						scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none')
+					} else {
+						scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none')
+					}
+				}
+
+				// Handle click
+				function handleClick() {
+					window.scrollTo({
+						top: 0,
+						behavior: 'smooth'
+					})
+				}
+
+				// Remove old listeners if any
+				window.removeEventListener('scroll', handleScroll)
+				scrollToTopBtn.removeEventListener('click', handleClick)
+
+				// Add listeners
+				window.addEventListener('scroll', handleScroll)
+				scrollToTopBtn.addEventListener('click', handleClick)
+
+				// Check initial scroll position
+				handleScroll()
+			}
+
+			// Initialize on page load
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initScrollToTop)
+			} else {
+				initScrollToTop()
+			}
+
+			// Re-initialize on page navigation (Astro view transitions)
+			document.addEventListener('astro:page-load', initScrollToTop)
+		</script>
 	</body>
 </html>
